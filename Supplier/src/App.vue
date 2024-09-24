@@ -1,17 +1,19 @@
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
 import SuppliersList from './components/SuppliersList.vue'
 import SuppliersMap from './components/SuppliersMap.vue'
 
 export default {
-  components: {SuppliersList, SuppliersMap},
+  components: {
+    SuppliersList,
+    SuppliersMap
+  },
   methods: {
     onSuppliersListClick() {
-      alert();
+      alert('Suppliers list clicked!');
     },
     onMapClick() {
-      alert();
+      alert('Map clicked!');
     }
   }
 }
@@ -24,8 +26,11 @@ export default {
     </div>
   </header>
   <main>
-    <SuppliersList></SuppliersList>
-    <SuppliersMap></SuppliersMap>
+    <SuppliersList @click="onSuppliersListClick"></SuppliersList>
+    <SuppliersMap @click="onMapClick"></SuppliersMap>
+
+    <RouterLink to="/suppliers">Go to Suppliers List</RouterLink>
+    <RouterLink to="/map">Go to Map</RouterLink>
   </main>
 </template>
 
