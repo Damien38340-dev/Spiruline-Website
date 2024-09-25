@@ -2,5 +2,9 @@
   "dependencies": {
     "timeago.js": "^4.0.2",
     "vue-router": "^4.4.5"
+  },
+  "devDependencies": {
+    "@vue-leaflet/vue-leaflet": "^0.10.1",
+    "leaflet": "^1.9.4"
   }
 }

@@ -1,5 +1,8 @@
 <script>
+import Map from "@/components/Map.vue";
+
 export default {
+  components: {Map},
   props: {
     name: "SuppliersMap"
   }
@@ -8,6 +11,8 @@ export default {
 
 <template>
   <h1> Suppliers Map </h1>
+  <Map/>
+
 </template>
 
 <style scoped>

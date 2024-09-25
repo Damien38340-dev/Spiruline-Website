@@ -5,7 +5,7 @@ import SuppliersMap from './components/SuppliersMap.vue'
 export default {
   components: {
     SuppliersList,
-    SuppliersMap
+    SuppliersMap,
   }
 }
 </script>
