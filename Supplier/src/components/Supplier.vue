@@ -1,13 +1,10 @@
 <script>
 export default {
-  name: 'MySupplier',
-  data() {
-    return {
-      name: 'My supplier',
-      status: false, // is there stock ?
-      checkedAt: new Date() // last check
-    }
-  }
+  props: {
+  name: String,
+  status: Boolean,
+checkedAt: Date,
+  },
 }
 </script>
 

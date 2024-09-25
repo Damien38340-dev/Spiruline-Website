@@ -17,7 +17,7 @@ export default {
         <img alt="Spirulina" src="C:\Users\damien.lobato\SPA_vuejs-suppliers-2022\images\spiruline.png" />
       </div>
       <div class="navbar-links">
-        <RouterLink to="/suppliersList">Suppliers List</RouterLink>
+        <RouterLink to="/suppliers">Suppliers List</RouterLink>
         <RouterLink to="/map">Map</RouterLink>
       </div>
     </nav>
