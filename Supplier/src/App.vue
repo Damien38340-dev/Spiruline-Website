@@ -1,5 +1,4 @@
 <script>
-
 import SuppliersList from './components/SuppliersList.vue'
 import SuppliersMap from './components/SuppliersMap.vue'
 
@@ -7,58 +6,101 @@ export default {
   components: {
     SuppliersList,
     SuppliersMap
-  },
-  methods: {
-    onSuppliersListClick() {
-      alert('Suppliers list clicked!');
-    },
-    onMapClick() {
-      alert('Map clicked!');
-    }
   }
 }
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125"/>
-    <div class="wrapper">
-    </div>
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <img alt="Spirulina" src="C:\Users\damien.lobato\SPA_vuejs-suppliers-2022\images\spiruline.png" />
+      </div>
+      <div class="navbar-links">
+        <RouterLink to="/suppliersList">Suppliers List</RouterLink>
+        <RouterLink to="/map">Map</RouterLink>
+      </div>
+    </nav>
   </header>
   <main>
-    <SuppliersList @click="onSuppliersListClick"></SuppliersList>
-    <SuppliersMap @click="onMapClick"></SuppliersMap>
-
-    <RouterLink to="/suppliers">Go to Suppliers List</RouterLink>
-    <RouterLink to="/map">Go to Map</RouterLink>
+    <RouterView />
   </main>
 </template>
 
 <style scoped>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 header {
-  line-height: 1.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+.navbar-logo img {
+  width: 100px;
+  height: auto;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+  color: #ffdd57;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  .navbar-logo {
+    margin-bottom: 1rem;
   }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  .navbar-links {
+    flex-direction: column;
+    gap: 1rem;
   }
+}
+
+main {
+  margin-top: 120px; /* Adjust this value if the navbar height changes */
+  padding: 1rem;
 }
 </style>
