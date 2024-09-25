@@ -1,10 +1,17 @@
 <script>
+import {format} from 'timeago.js';
+
 export default {
   props: {
   name: String,
   status: Boolean,
 checkedAt: Date,
   },
+  computed: {
+    timeAgo() {
+      return format(this.checkedAt);
+    }
+  }
 }
 </script>
 
@@ -14,7 +21,7 @@ checkedAt: Date,
     <p class="status" :class="status ? 'status-ok' : 'status-ko'">
       Stock: {{ status ? 'OK' : 'KO' }}
     </p>
-    <p class="checked-at">Last checked: {{ checkedAt.toLocaleString() }}</p>
+    <p class="checked-at">Last checked: {{ timeAgo }}</p>
   </div>
 </template>
 
