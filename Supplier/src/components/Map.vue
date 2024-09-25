@@ -13,7 +13,28 @@ export default {
       url: "https://{s}.tile.osm.org/{z}/{x}/{y}.png",
       zoom: 1,
       center: [46.5322, 2.9482],
-      bounds: null
+      bounds: null,
+      suppliers: [
+        {
+          id: 1,
+          latitude: 20.682859,
+          longitude: -88.567947
+        },
+        {
+          id: 2,
+          latitude: -13.164416,
+          longitude: -72.547059
+        },
+        {
+          id: 3,
+          latitude: 29.97862,
+          longitude: 31.13892
+        },
+        {
+          id: 4,
+          latitude: -16.317771,
+          longitude: 145.406236
+        }]
     };
   }
 };
@@ -23,11 +44,7 @@ export default {
   <div style="height: 500px; width: 700px; max-width: 1200px; margin: 0 auto;">
     <LMap :zoom="zoom" :center="center" style="height: 100%; width: 100%;">
       <LTileLayer :url="url"></LTileLayer>
-      <LMarker :lat-lng="[45.291584, 5.638007]"></LMarker>
-      <LMarker :lat-lng="[20.682859, -88.567947]"></LMarker>
-      <LMarker :lat-lng="[-13.164416, -72.547059]"></LMarker>
-      <LMarker :lat-lng="[29.97862, 31.13892]"></LMarker>
-      <LMarker :lat-lng="[-16.317771, 145.406236]"></LMarker>
+      <LMarker v-for="supplier in suppliers" :lat-lng="[supplier.latitude, supplier.longitude]" :key="supplier.id"></LMarker>
     </LMap>
   </div>
 </template>
