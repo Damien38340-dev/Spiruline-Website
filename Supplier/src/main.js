@@ -7,6 +7,12 @@ import router from './router'
 import { Icon } from "leaflet";
 // Import the whole Leaflet CSS
 import "leaflet/dist/leaflet.css";
+import { createPinia } from 'pinia'
+
+const pinia = createPinia()
+
+
+
 
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png"
 import markerIcon from "leaflet/dist/images/marker-icon.png"
@@ -24,5 +30,6 @@ Icon.Default.mergeOptions({
 const app = createApp(App)
 
 app.use(router)
+app.use(pinia)
 
 app.mount('#app')

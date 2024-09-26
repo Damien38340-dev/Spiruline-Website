@@ -2,7 +2,6 @@
 import Map from "@/components/Map.vue";
 import axios, {isCancel, AxiosError} from 'axios';
 
-
 export default {
   components: {Map},
   props: {

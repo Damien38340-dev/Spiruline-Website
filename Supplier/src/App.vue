@@ -1,6 +1,7 @@
 <script>
-import SuppliersList from './components/SuppliersList.vue'
-import SuppliersMap from './components/SuppliersMap.vue'
+import SuppliersList from './views/SuppliersList.vue'
+import SuppliersMap from './views/SuppliersMap.vue'
+
 
 export default {
   components: {

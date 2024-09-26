@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import SuppliersList from '@/components/SuppliersList.vue'
+import SuppliersList from '@/views/SuppliersList.vue'
 import Supplier from "@/components/Supplier.vue";
-import Home from "@/components/Home.vue";
+import Home from "@/views/Home.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,7 +24,7 @@ const router = createRouter({
             // route level code-splitting
             // this generates a separate chunk (Carte.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => import('@/components/SuppliersMap.vue'),
+            component: () => import('@/views/SuppliersMap.vue'),
             //dynamic
         },
         {
