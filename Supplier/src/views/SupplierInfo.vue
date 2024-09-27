@@ -30,6 +30,9 @@ export default {
               latitude: reseller.latitude,
               longitude: reseller.longitude,
             }))
+            // const [name, latitude, longitude] = this.resellers;
+            // this.markers = this.resellers;
+            // console.log(this.markers)
 
           })
           .catch((error) => {
@@ -60,7 +63,7 @@ export default {
   <div v-for="reseller in resellers">{{reseller.name}}
   <p>  </p>
   </div>
-<Map :markers="resellers"></Map>
+<Map :markers="resellers"> </Map>
 </template>
 <style scoped>
 
