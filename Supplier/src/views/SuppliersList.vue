@@ -1,10 +1,11 @@
 <script>
 import Supplier from "@/components/Supplier.vue";
-import axios, {isCancel, AxiosError} from 'axios';
+import axios from 'axios';
+import SupplierInfo from "@/views/SupplierInfo.vue";
 
 
 export default {
-  components: {Supplier},
+  components: {Supplier, SupplierInfo},
   props: {
     name: "SuppliersList"
   },
@@ -12,7 +13,7 @@ export default {
     return {
       suppliers: [],
       loading: false,
-      error: null
+      error: null,
     }
   },
   created() {
@@ -44,15 +45,18 @@ export default {
   <div class="suppliers-container">
     <h1>Suppliers List</h1>
     <p v-if="loading"> Wait please... </p>
+
     <div class="suppliers-list">
-      <Supplier
-          v-for="supplier in suppliers"
-          :name="supplier.name"
-          :status="supplier.status"
-          :checkedAt="supplier.checkedAt"
-          :key="supplier.id"
-          v-if="!error"
-      />
+      <RouterLink v-for="supplier in suppliers"
+                  :key="supplier.id"
+                  :to="{ name:'SupplierInfo', params: { id: supplier.id } }">
+        <Supplier
+            :name="supplier.name"
+            :status="supplier.status"
+            :checkedAt="supplier.checkedAt"
+        />
+      </RouterLink>
+
       <p v-if="error" :class="{errorColor: error}"> {{ error }} </p>
 
     </div>

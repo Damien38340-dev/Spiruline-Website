@@ -19,12 +19,11 @@ export default {
       suppliers: [],
       loading: false,
       error: null,
-      selectedSupplierName: null
     };
   },
   methods: {
-    showSupplierName(name) {
-      this.selectedSupplierName = name;
+    goToSupplierPage(supplierId) {
+      this.$router.push({name: 'SupplierInfo' , params: {id: supplierId}});
     }
   },
   created() {
@@ -54,12 +53,16 @@ export default {
 <template>
   <p v-if="loading"> Wait please... </p>
   <div style="height: 500px; width: 700px; max-width: 1200px; margin: 0 auto;">
+
     <LMap ref="map" :zoom="zoom" :center="center" style="height: 100%; width: 100%;">
 
       <LTileLayer :url="url"></LTileLayer>
-      <LMarker v-for="supplier in suppliers" :lat-lng="[supplier.latitude, supplier.longitude]" :key="supplier.id"
-               @click="showSupplierName(supplier.name)"
-               v-if="!error">       <l-popup> {{selectedSupplierName}} </l-popup> </LMarker>
+      <LMarker v-for="supplier in suppliers" :key="supplier.id" :lat-lng="[supplier.latitude, supplier.longitude]">
+        <l-popup> <span @click="goToSupplierPage(supplier.id)"
+                         style="cursor: pointer; color: blue; text-decoration: underline;">
+            {{ supplier.name }}
+          </span> </l-popup>
+      </LMarker>
     </LMap>
   </div>
   <p v-if="error" :class="{errorColor: error}"> {{ error }} </p>

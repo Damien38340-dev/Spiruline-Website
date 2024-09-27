@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import SuppliersList from '@/views/SuppliersList.vue'
 import Supplier from "@/components/Supplier.vue";
 import Home from "@/views/Home.vue";
+import SupplierInfo from "@/views/SupplierInfo.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
             name: 'supplier',
             component: Supplier
         },
+        {
+            path: '/supplierInfo/:id',
+            name: 'SupplierInfo',
+            component: SupplierInfo
+        }
     ]
 })
 
