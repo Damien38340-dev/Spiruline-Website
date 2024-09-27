@@ -47,6 +47,7 @@ export default {
     <p v-if="loading"> Wait please... </p>
 
     <div class="suppliers-list">
+
       <RouterLink v-for="supplier in suppliers"
                   :key="supplier.id"
                   :to="{ name:'SupplierInfo', params: { id: supplier.id } }">

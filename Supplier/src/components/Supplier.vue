@@ -4,8 +4,8 @@ import {format} from 'timeago.js';
 export default {
   props: {
   name: String,
-  status: Boolean,
-checkedAt: Date,
+  status: Number,
+checkedAt: String,
   },
   computed: {
     timeAgo() {
