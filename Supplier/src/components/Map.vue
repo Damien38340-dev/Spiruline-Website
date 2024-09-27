@@ -1,5 +1,5 @@
 <script>
-import {LMap, LTileLayer, LMarker} from "@vue-leaflet/vue-leaflet";
+import {LMap, LTileLayer, LMarker, LPopup} from "@vue-leaflet/vue-leaflet";
 import axios from "axios";
 
 export default {
@@ -7,7 +7,8 @@ export default {
   components: {
     LMap,
     LTileLayer,
-    LMarker
+    LMarker,
+    LPopup
   },
   data() {
     return {
@@ -54,15 +55,13 @@ export default {
   <p v-if="loading"> Wait please... </p>
   <div style="height: 500px; width: 700px; max-width: 1200px; margin: 0 auto;">
     <LMap ref="map" :zoom="zoom" :center="center" style="height: 100%; width: 100%;">
+
       <LTileLayer :url="url"></LTileLayer>
       <LMarker v-for="supplier in suppliers" :lat-lng="[supplier.latitude, supplier.longitude]" :key="supplier.id"
                @click="showSupplierName(supplier.name)"
-               v-if="!error"></LMarker>
-    </LMap> <div v-if="selectedSupplierName">
-    <p>Selected Supplier: {{ selectedSupplierName }}</p>
+               v-if="!error">       <l-popup> {{selectedSupplierName}} </l-popup> </LMarker>
+    </LMap>
   </div>
-  </div>
-
   <p v-if="error" :class="{errorColor: error}"> {{ error }} </p>
 </template>
 
