@@ -6,23 +6,18 @@ import Map from "@/components/Map.vue";
 export default {
   name: "SupplierInfo",
   components: {Supplier, Map},
-props: {
-  reseller: []  ,
-
-},
   data() {
     return {
       supplier: {},
       resellers: [],
       loading: false,
       error: null,
-      id:this.$route.params.id
+      id: this.$route.params.id,
+      markers: []
     };
   },
   methods: {
-    getAllSuppliersFromAPI() {}
-  },
-    created() {
+    getAllSuppliersFromAPI() {
       this.loading = true;
       const url = "https://suppliers.depembroke.fr/api/suppliers/" + this.id;
       axios
@@ -32,8 +27,10 @@ props: {
             this.resellers = this.supplier.resellers.map(reseller=> ({
               name: reseller.name,
               description: reseller.description,
-
+              latitude: reseller.latitude,
+              longitude: reseller.longitude,
             }))
+
           })
           .catch((error) => {
             this.error = error.message;
@@ -41,6 +38,15 @@ props: {
           .finally(() => {
             this.loading = false;
           });
+    }
+  },
+    created() {
+      if (this.resellers.length > 0) {
+
+      }else {
+        this.getAllSuppliersFromAPI();
+
+      }
     }
 };
 </script>
@@ -54,7 +60,7 @@ props: {
   <div v-for="reseller in resellers">{{reseller.name}}
   <p>  </p>
   </div>
-<Map ></Map>
+<Map :markers="resellers"></Map>
 </template>
 <style scoped>
 

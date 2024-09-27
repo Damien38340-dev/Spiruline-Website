@@ -10,6 +10,10 @@ export default {
     LMarker,
     LPopup
   },
+  props: {
+    markers: Array,
+     },
+
   data() {
     return {
       url: "https://{s}.tile.osm.org/{z}/{x}/{y}.png",
@@ -24,29 +28,25 @@ export default {
   methods: {
     goToSupplierPage(supplierId) {
       this.$router.push({name: 'SupplierInfo' , params: {id: supplierId}});
-    }
+    },
+
   },
-  created() {
-    this.loading = true;
-    setTimeout(() => {
-      axios
-          .get('https://suppliers.depembroke.fr/api/suppliers')
-          .then(response => {
-            this.suppliers = response.data.data.map(supplier => ({
-              id: supplier.id,
-              name: supplier.name,
-              latitude: supplier.latitude,
-              longitude: supplier.longitude,
-            }));
-          })
-          .catch(error => {
-            this.error = error.message;
-          })
-          .finally(() => {
-            this.loading = false;
-          });
-    }, 1000);
+  updated() {
+    console.log(this.markers);
+    this.markers.forEach((item) => {
+      this.suppliers.push(item);
+    })
   }
+  /*if (this.markers.length > 0) {
+   this.markers.forEach((item) => {
+    this.suppliers.push(item);
+   })
+  } else {
+    console.log(this.markers);
+    console.log("OI");
+    this.getAllSupplierFromAPI();
+  }
+  }*/
 };
 </script>
 
