@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-
+  <img src="./../../images/green-spiruline.webp" alt="green-spiruline">
 </template>
 
 <style scoped>

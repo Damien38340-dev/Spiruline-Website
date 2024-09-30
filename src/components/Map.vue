@@ -26,6 +26,9 @@ export default {
     };
   },
   methods: {
+    findPosition(position){
+      doSomething(position.coords.latitude, position.coords.longitude);
+    },
     goToSupplierPage(supplierId) {
       this.$router.push({name: 'SupplierInfo' , params: {id: supplierId}});
     },
