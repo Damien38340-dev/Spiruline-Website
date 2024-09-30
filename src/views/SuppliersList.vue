@@ -1,11 +1,10 @@
 <script>
 import Supplier from "@/components/Supplier.vue";
 import axios from 'axios';
-import SupplierInfo from "@/views/SupplierInfo.vue";
 
 
 export default {
-  components: {Supplier, SupplierInfo},
+  components: {Supplier},
   props: {
     name: "SuppliersList"
   },
