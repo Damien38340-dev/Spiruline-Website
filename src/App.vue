@@ -15,7 +15,7 @@ export default {
   <header>
     <nav class="navbar">
       <div class="navbar-logo">
-        <img alt="Spirulina" src="../images/spiruline.png">
+        <RouterLink to="/"><img alt="Spirulina" src="../images/spiruline.png"></RouterLink>
       </div>
       <div class="navbar-links">
         <RouterLink to="/suppliers">Suppliers List</RouterLink>
@@ -24,7 +24,7 @@ export default {
     </nav>
   </header>
   <main>
-    <RouterView />
+    <RouterView/>
   </main>
 </template>
 

@@ -29,7 +29,6 @@ export default {
     goToSupplierPage(supplierId) {
       this.$router.push({name: 'SupplierInfo' , params: {id: supplierId}});
     },
-
   },
   updated() {
     console.log(this.markers);
@@ -37,16 +36,6 @@ export default {
       this.suppliers.push(item);
     })
   }
-  /*if (this.markers.length > 0) {
-   this.markers.forEach((item) => {
-    this.suppliers.push(item);
-   })
-  } else {
-    console.log(this.markers);
-    console.log("OI");
-    this.getAllSupplierFromAPI();
-  }
-  }*/
 };
 </script>
 
