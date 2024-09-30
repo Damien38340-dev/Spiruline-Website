@@ -11,8 +11,22 @@ export default {
   data() {
     return {
       suppliers: [],
+      filteredSuppliers: [],
       loading: false,
       error: null,
+      showOnlyInStock: false,  // Toggle to show only suppliers in stock
+    }
+  },
+  methods: {
+    sortByStock() {
+      if (this.showOnlyInStock) {
+        // If already filtered, reset to show all suppliers
+        this.filteredSuppliers = this.suppliers;
+      } else {
+        // Filter only suppliers with a non-empty status (indicating they're in stock)
+        this.filteredSuppliers = this.suppliers.filter(supplier => supplier.status !== '');
+      }
+      this.showOnlyInStock = !this.showOnlyInStock;  // Toggle the filter status
     }
   },
   created() {
@@ -44,6 +58,8 @@ export default {
   <div class="suppliers-container">
     <h1>Suppliers List</h1>
     <p v-if="loading"> Wait please... </p>
+
+    <button @click="sortByStock()" style="margin-bottom: 10px;" type="button">Only show products in stock</button>
 
     <div class="suppliers-list">
 

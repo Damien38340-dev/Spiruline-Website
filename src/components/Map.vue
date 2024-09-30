@@ -1,6 +1,5 @@
 <script>
 import {LMap, LTileLayer, LMarker, LPopup} from "@vue-leaflet/vue-leaflet";
-import axios from "axios";
 
 export default {
   name: "Map",
@@ -12,7 +11,7 @@ export default {
   },
   props: {
     markers: Array,
-     },
+  },
 
   data() {
     return {
@@ -26,15 +25,27 @@ export default {
     };
   },
   methods: {
-    findPosition(position){
-      doSomething(position.coords.latitude, position.coords.longitude);
+    getCenterMapPosition() {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+              this.center = [position.coords.latitude, position.coords.longitude];
+            },
+            (error) => {
+              console.error("Error getting location:", error);
+              this.center = [46.5322, 2.9482];
+            }
+        );
+      } else {
+        this.center = [46.5322, 2.9482];
+      }
     },
     goToSupplierPage(supplierId) {
-      this.$router.push({name: 'SupplierInfo' , params: {id: supplierId}});
+      this.$router.push({name: 'SupplierInfo', params: {id: supplierId}});
     },
   },
   updated() {
-    console.log(this.markers);
+    this.getCenterMapPosition();
     this.markers.forEach((item) => {
       this.suppliers.push(item);
     })
@@ -45,15 +56,13 @@ export default {
 <template>
   <p v-if="loading"> Wait please... </p>
   <div style="height: 500px; width: 700px; max-width: 1200px; margin: 0 auto;">
-
     <LMap ref="map" :zoom="zoom" :center="center" style="height: 100%; width: 100%;">
-
       <LTileLayer :url="url"></LTileLayer>
       <LMarker v-for="supplier in suppliers" :key="supplier.id" :lat-lng="[supplier.latitude, supplier.longitude]">
         <l-popup> <span @click="goToSupplierPage(supplier.id)"
-                         style="cursor: pointer; color: blue; text-decoration: underline;">
+                        style="cursor: pointer; color: blue; text-decoration: underline;">
             {{ supplier.name }}
-          </span> </l-popup>
+          </span></l-popup>
       </LMarker>
     </LMap>
   </div>
